@@ -1,0 +1,25 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@400;700&display=swap');
+
+hr {
+    height: 10px;
+    border: 0;
+}
+
+.ab {
+    padding: 8px;
+    border-radius: 5px;
+    transition: 0.5s;
+    letter-spacing: 2px;
+    margin-right: 15px;
+    color: #202020; /* Default text color is black */
+    
+}
+
+.ab:hover {
+    background: #202020; /* Background color on hover */
+    color: white; /* Text color on hover */
+    
+}
+
