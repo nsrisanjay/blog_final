@@ -21,13 +21,6 @@ function Articles() {
     let res=await axiosWithToken.get(`http://localhost:4000/user-api/articles`)
     setArticlesList(res.data.payload)
   }
-
-
-  const readArticleByArticleId=async (articleObj)=>{
-    await axiosWithToken.put(`http://localhost:4000/user-api/views`,articleObj)
-    navigate(`../article/${articleObj.articleId}`,{state:articleObj})
-  }
-
     useEffect(()=>{
       getArticlesOfCurrentAuthor()
     },[])
@@ -40,6 +33,9 @@ function Articles() {
     let year = new Date(iso).getUTCFullYear();
     return `${date}/${month+1}/${year}`;
   }
+  const readArticleByArticleId=async (articleObj)=>{
+    navigate(`../article/${articleObj.articleId}`,{state:articleObj})
+  }
 
   return (
     <div className='container m-4 d-block m-auto'>

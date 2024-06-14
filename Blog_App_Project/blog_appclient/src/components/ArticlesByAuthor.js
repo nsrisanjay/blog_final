@@ -61,9 +61,6 @@ function ArticlesByAuthor() {
                     <small className="text-body-secondary">
                       Last updated on {ISOtoUTC(articleObj.dateOfModification)}
                     </small>
-                    <small className="text-body-secondary">
-                      Views: {articleObj.views}
-                    </small>
                   </div>
             </div>
 

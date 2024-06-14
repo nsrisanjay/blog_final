@@ -119,36 +119,5 @@ AuthorApp.put('/articles/:articleid',verifyToken,expressAsyncHandler(async (req,
     }
 }))
 
-//get all authors
-AuthorApp.get('/authors',verifyToken,expressAsyncHandler(async(req,res)=>{
-    //get all authors list from articleCollectionObj
-    let allAuthors=await authorcollectionObj.find({}).toArray()
-    res.send({message:"All authors",payload:allAuthors})
-}))
-
-
-//update the author for followers
-AuthorApp.post('/authors/:authorUsername', verifyToken, expressAsyncHandler(async (req, res) => {
-   
-        let urlauthorUsername = req.params.authorUsername;
-        // Get the new follower from the request body
-        let follower = req.body;
-        // Find the author document
-        const author = await authorcollectionObj.findOne({ username: urlauthorUsername });
-        // Copy the followers array
-        let followerList = [...author.followers];
-        // Remove the existing follower with the same username
-        followerList = followerList.filter(existingFollower => existingFollower.username !== follower.username);
-        // Add the new follower to the list
-        followerList.push(follower);
-        // Update the author document with the new followers list
-        await authorcollectionObj.updateOne({ username: urlauthorUsername }, { $set: { followers: followerList } });
-        // Fetch the modified author document
-        let modifiedAuthor = await authorcollectionObj.findOne({ username: urlauthorUsername });
-
-        res.send({ message: "Followers are updated", payload: modifiedAuthor });
-    
-}));
-
 
 module.exports=AuthorApp
